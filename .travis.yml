@@ -30,6 +30,7 @@ install:
     else
       curl https://raw.githubusercontent.com/luismbo/cl-travis/master/install.sh | sh;
     fi     
+  - 'cd $HOME/quicklisp/local-projects && git clone https://git.elangley.org/git/edwlan/fwoar.lisputils'
 
 # this serves as an example of how to use the 'cl' script (provided by
 # CIM) to test your Lisp project. Here, we're using the RT framework
