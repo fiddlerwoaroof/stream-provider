@@ -38,6 +38,6 @@ install:
 # determining whether a test suite fails or succeeds.
 script:
   - cl -e '(ql:quickload :stream-provider)'
-  - cl -e '(ql:quickload :stream-provider)
+  - cl -e '(ql:quickload :stream-provider.test)
            (asdf:test-system :stream-provider)';
     [ $? -eq 1 ]
