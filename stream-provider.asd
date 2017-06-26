@@ -28,7 +28,8 @@
   :perform (asdf:test-op (o s)
 		    (let ((*package* (find-package :stream-provider.tests)))
 		      (uiop:symbol-call :should-test
-					:test))))
+					:test-for-xunit
+					*standard-output*))))
 
 (defpackage :fwoar.sp-user
   (:use cl)
