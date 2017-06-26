@@ -6,11 +6,8 @@ env:
     - LISP=abcl
     - LISP=allegro
     - LISP=sbcl
-    - LISP=sbcl32
     - LISP=ccl
-    - LISP=ccl32
     - LISP=clisp
-    - LISP=clisp32
     - LISP=cmucl
     - LISP=ecl
 
@@ -20,6 +17,9 @@ matrix:
     - env: LISP=cmucl
     # issue #16
     - env: LISP=allegro
+    - env: LISP=clisp
+    - env: LISP=abcl
+    - env: LISP=ecl
 
 # either use a local install.sh script or install it via curl. Feel
 # free to simplify this section in your own .travis.yml file.
