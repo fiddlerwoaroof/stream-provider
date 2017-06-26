@@ -39,5 +39,5 @@ install:
 script:
   - cl -e '(ql:quickload :stream-provider)'
   - cl -e '(ql:quickload :stream-provider)
-           (asdf:test-op :stream-provider)';
+           (asdf:test-system :stream-provider)';
     [ $? -eq 1 ]
