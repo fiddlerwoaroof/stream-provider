@@ -37,10 +37,8 @@ install:
 # to do unit testing; other frameworks will have different ways of
 # determining whether a test suite fails or succeeds.
 script:
-  - pwd
-  - ls
-  - cl -e '(push (truename ".") asdf:*central-registry*)'
+  - pwd && ls && cl -e '(push (truename ".") asdf:*central-registry*)'
        -e '(ql:quickload :stream-provider)'
-  - cl -e '(push (truename ".") asdf:*central-registry*)'
+  - pwd && ls && cl -e '(push (truename ".") asdf:*central-registry*)'
        -e '(asdf:test-system :stream-provider)';
     [ $? -eq 1 ]
