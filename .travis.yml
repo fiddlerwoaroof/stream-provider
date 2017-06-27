@@ -40,5 +40,6 @@ script:
   - pwd && ls && cl -e '(push (truename ".") asdf:*central-registry*)'
        -e '(ql:quickload :stream-provider)'
   - pwd && ls && cl -e '(push (truename ".") asdf:*central-registry*)'
+       -e '(ql:quickload :stream-provider.test)';
        -e '(asdf:test-system :stream-provider)';
     [ $? -eq 1 ]
