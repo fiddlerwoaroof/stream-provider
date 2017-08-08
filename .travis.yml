@@ -30,7 +30,10 @@ install:
     else
       curl https://raw.githubusercontent.com/luismbo/cl-travis/master/install.sh | sh;
     fi     
-  - 'pushd $HOME/quicklisp/local-projects && git clone http://git.elangley.org/git/u/edwlan/fwoar.lisputils.git && git clone http://git.elangley.org/git/u/edwlan/vector-update-stream.git; popd'
+  - 'pushd $HOME/quicklisp/local-projects &&
+     git clone http://git.elangley.org/git/u/edwlan/fwoar.lisputils.git &&
+     git clone http://git.elangley.org/git/u/edwlan/vector-update-stream.git;
+     popd'
 
 # this serves as an example of how to use the 'cl' script (provided by
 # CIM) to test your Lisp project. Here, we're using the RT framework
