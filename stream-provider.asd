@@ -9,7 +9,7 @@
   :author "Edward Langley <el-streamprovider@elangley.org"
   :license "MIT"
   :in-order-to ((test-op (test-op "stream-provider.test")))
-  :depends-on (#:fwoar.lisputils
+  :depends-on (#:fwoar-lisputils
                #:alexandria
                #:serapeum
 	       #:uiop

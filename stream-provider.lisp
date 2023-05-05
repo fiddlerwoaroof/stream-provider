@@ -8,7 +8,8 @@
            #:root
            #:streams
            #:with-storage-stream
-           #:get-nested-provider))
+           #:get-nested-provider
+           #:absolute-path))
 (cl:in-package :stream-provider)
 
 (defclass stream-provider ()
@@ -57,7 +58,7 @@ If you override on provider, make sure to CALL-NEXT-METHOD"))
 (defmethod get-stream-for ((provider string-provider) streamable &rest extra-args)
   (declare (ignore extra-args))
   (with-accessors* (streams) provider
-    (vector-update-stream:make-update-stream 
+    (vector-update-stream:make-update-stream
      (setf (gethash (stream-key provider streamable) streams)
            (make-array 10
                        :element-type 'octet
@@ -68,6 +69,13 @@ If you override on provider, make sure to CALL-NEXT-METHOD"))
   ((%root :initarg :root :initform (error "need a root for a file-provider") :reader root)
    (%if-exists :initarg :if-exists :initform :supersede :reader if-exists)))
 
+(defgeneric absolute-path (provider path)
+  (:method ((provider stream-provider) (path string))
+    (absolute-path provider (parse-namestring path)))
+  (:method ((provider stream-provider) (path pathname))
+    (merge-pathnames path
+                     (root provider))))
+
 (defmethod get-stream-for ((provider file-provider) streamable &rest extra-args)
   (declare (ignore extra-args))
   (with-accessors* (if-exists root) provider
@@ -76,7 +84,7 @@ If you override on provider, make sure to CALL-NEXT-METHOD"))
       (when (eql if-exists :if-exists)
         (ensure-directories-exist stream-key))
       (open stream-key :direction :output :if-exists if-exists
-            :element-type 'octet))))
+                       :element-type 'octet))))
 
 (defmacro with-storage-stream ((stream-sym object provider &rest extra-args) &body body)
   (once-only (object)
